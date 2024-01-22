@@ -8,9 +8,6 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
@@ -21,7 +18,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test --trace on
+      run: npx playwright test
     - uses: actions/upload-artifact@v3
       if: always()
       with:
@@ -29,13 +26,7 @@ jobs:
         path: playwright-report/
         retention-days: 30
 
-    - name: Setup Pages
-      uses: actions/configure-pages@v2
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v1
-      with:
-      # Upload entire repository
-        path: playwright-report/
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v1
+    - name: Deploy
+      uses: actions/deploy-pages
+      
+      
