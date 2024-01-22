@@ -25,39 +25,29 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Setup Pages
-      uses: actions/configure-pages@v3
-    - name: Upload Artifact
-      uses: actions/upload-pages-artifact@v2
-      with:
-        # upload entire directory
-        path: '.'
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v2
+        
 
-  # # Single deploy job no building
-  # deploy:
-  #   environment:
-  #     name: github-pages
-  #     url: ${{steps.deployment.outputs.page_url}}
-  #   needs: test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #     - name: Setup Pages
-  #       uses: actions/configure-pages@v3
-  #     - name: Upload Artifact
-  #       uses: actions/upload-pages-artifact@v2
-  #       with:
-  #         # upload entire directory
-  #         path: '.'
-  #     - name: Deploy to GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v2
+  # Single deploy job no building
+  deploy:
+    if: always()
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          # upload entire directory
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
     
       
 
