@@ -26,7 +26,6 @@ jobs:
         path: playwright-report/
         retention-days: 30
         
-
   # Single deploy job no building
   deploy:
     if: always()
@@ -34,6 +33,10 @@ jobs:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
     needs: test
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
