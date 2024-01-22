@@ -25,12 +25,13 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
-        
+
   # Single deploy job no building
   deploy:
     environment:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
