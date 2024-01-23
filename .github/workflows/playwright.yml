@@ -25,6 +25,14 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: Upload Artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: "playwright-report/"
         
   # Single deploy job no building
   deploy:
@@ -39,21 +47,22 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      # - name: Checkout
+      #   uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload Artifact
+      # - name: Setup Pages
+      #   uses: actions/configure-pages@v4
+      # - name: Upload Artifact
         # uses: actions/upload-pages-artifact@v3
         # with:
         #   # upload entire directory
         #   path: '.'
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
+        # uses: actions/upload-artifact@v4
+        # if: always()
+        # with:
+        #   name: playwright-report
+        #   path: playwright-report/
+        
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
