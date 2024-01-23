@@ -43,6 +43,9 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
+        with:
+          # upload entire directory
+          path: 'playwright-report'
 
   # Deployment job
   deploy:
