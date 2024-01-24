@@ -1,0 +1,31 @@
+{
+    "premium_free": {
+        "userId": "",
+        "username": "Admin",
+        "password": "admin123",
+        "teacherId": "",
+        "teacherUsername": "",
+        "teacherPassword": "",
+        "teacherName": "",
+        "adminUsername": "", 
+        "adminPassword": "",
+        "textbookName": "", 
+        "chapterName": "",
+        "validCreditCardNum": "4235751509666457"
+    },
+    "premium_paid": {
+        "userId": "1260671",
+        "username": "nc.automation.fdc+230226043017@gmail.com",
+        "password": "admin123",
+        "teacherId": "16201",
+        "teacherUsername": "NCAutoTeacherPP",
+        "teacherPassword": "admin123",
+        "teacherName": "NCAutoTeacherPP",
+        "adminUsername": "fdc-tester-automation", 
+        "adminPassword": "admin123",
+        "textbookName": "初心者コース", 
+        "chapterName": "",
+        "validCreditCardNum": "4235751509666457"
+    }
+    
+}

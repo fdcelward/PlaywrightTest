@@ -25,29 +25,53 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
-        
+
   deploy:
     if: always()
-    environment:
-      name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
+    runs-on: ubuntu-latest
     needs: test
     permissions:
       contents: read
       pages: write
       id-token: write
-    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+      
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - uses: actions/download-artifact@master
+      with:
+        name: page
+        path: .
+    - uses: actions/configure-pages@v1
+    - uses: actions/upload-pages-artifact@v1
+      with:
+        path: .
+    - id: deployment
+      uses: actions/deploy-pages@main
+        
+  # deploy:
+  #   if: always()
+  #   environment:
+  #     name: github-pages
+  #     url: ${{steps.deployment.outputs.page_url}}
+  #   needs: test
+  #   permissions:
+  #     contents: read
+  #     pages: write
+  #     id-token: write
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # upload entire directory
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v3
+  #     - name: Setup Pages
+  #       uses: actions/configure-pages@v4
+  #     - name: Upload Artifact
+  #       uses: actions/upload-pages-artifact@v3
+  #       with:
+  #         # upload entire directory
+  #         path: '.'
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v3
