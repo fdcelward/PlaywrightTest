@@ -1,0 +1,213 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\playwright.config.js",
+    "rootDir": "C:/Users/ACER/Documents/GitHub/PlaywrightTest/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "results.json"
+        }
+      ],
+      [
+        "html",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Users/ACER/Documents/GitHub/PlaywrightTest/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "id": "chromium_stg",
+        "name": "chromium_stg",
+        "testDir": "C:/Users/ACER/Documents/GitHub/PlaywrightTest/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.41.1",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "login_functionality.spec.ts",
+      "file": "login_functionality.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Login successful using valid credentials",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium_stg",
+              "projectName": "chromium_stg",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 12450,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "../test-data/test_data_stg_nc.json\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2024-01-24T08:51:26.318Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1748902fd8bb6a3d236d-18809f465db0144e6fec",
+          "file": "login_functionality.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "Login unsuccessful using invalid credentials",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium_stg",
+              "projectName": "chromium_stg",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "status": "passed",
+                  "duration": 9467,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "../test-data/test_data_stg_nc.json\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2024-01-24T08:51:26.321Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1748902fd8bb6a3d236d-6819ba5d6f73653a7515",
+          "file": "login_functionality.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "Login test credentialsss",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium_stg",
+              "projectName": "chromium_stg",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "status": "failed",
+                  "duration": 17079,
+                  "error": {
+                    "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('//div[@class=\\'account_area cf\\']')\nExpected: visible\nReceived: hidden\nCall log:\n  \u001b[2m- expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//div[@class=\\'account_area cf\\']')\u001b[22m\n",
+                    "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('//div[@class=\\'account_area cf\\']')\nExpected: visible\nReceived: hidden\nCall log:\n  \u001b[2m- expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//div[@class=\\'account_area cf\\']')\u001b[22m\n\n    at C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts:24:65",
+                    "location": {
+                      "file": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts",
+                      "column": 65,
+                      "line": 24
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 22 |\u001b[39m test(\u001b[32m'Login test credentialsss'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/account'\u001b[39m)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\"//div[@class='account_area cf']\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts",
+                        "column": 65,
+                        "line": 24
+                      },
+                      "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('//div[@class=\\'account_area cf\\']')\nExpected: visible\nReceived: hidden\nCall log:\n  \u001b[2m- expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//div[@class=\\'account_area cf\\']')\u001b[22m\n\n\n\u001b[0m \u001b[90m 22 |\u001b[39m test(\u001b[32m'Login test credentialsss'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/account'\u001b[39m)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\"//div[@class='account_area cf']\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts:24:65\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2024-01-24T08:51:26.319Z",
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\test-results\\login_functionality-Login-test-credentialsss-chromium-stg\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\test-results\\login_functionality-Login-test-credentialsss-chromium-stg\\video.webm"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts",
+                    "column": 65,
+                    "line": 24
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1748902fd8bb6a3d236d-925edb09e00d60ef9b80",
+          "file": "login_functionality.spec.ts",
+          "line": 22,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2024-01-24T08:51:25.790Z",
+    "duration": 18969.012000000002,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
