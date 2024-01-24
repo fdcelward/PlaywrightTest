@@ -65,7 +65,7 @@ jobs:
         with:
           github_token: ${{ secrets.TOKEN_GITHUB }}
           slack_token: ${{ secrets.SLACK_TOKEN }}
-          slack_channel: "automation_for_testing_only"
+          slack_channel: "C03FN0AFT8V"
           # slack_username: 'Slack username'
           # slack_icon_emoji: ':botbot:'
           # suite_name: 'Playwright Test'
