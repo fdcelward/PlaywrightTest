@@ -22,5 +22,4 @@ test('Login unsuccessful using invalid credentials', async ({ page }) => {
 test('Login test credentialsss', async ({ page }) => {
   await page.goto('/account')
   await expect(page.locator("//div[@class='account_area cf']")).toBeVisible()
-  console.log(process.env.testDataPath);
 });

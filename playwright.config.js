@@ -36,6 +36,7 @@ module.exports = defineConfig({
     //     sendResults: "always", // "always" , "on-failure", "off"
     //   },
     // ],
+    ['json', { outputFile: 'results.json' }],
     ["html"], // other reporters
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
