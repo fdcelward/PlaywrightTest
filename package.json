@@ -10,6 +10,7 @@
   "devDependencies": {
     "@playwright/test": "^1.41.1",
     "@types/node": "^20.11.5",
+    "playwright-json-summary-reporter": "^1.0.1",
     "playwright-slack-report": "^1.1.60"
   },
   "dependencies": {
