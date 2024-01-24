@@ -43,10 +43,12 @@ jobs:
       with:
         name: playwright-report
         path: playwright-report/
-    - uses: actions/configure-pages@v1
-    - uses: actions/upload-pages-artifact@v1
+    # - uses: actions/configure-pages@v1
+    # - uses: actions/upload-pages-artifact@v1
+    - uses: actions/configure-pages@main
+    - uses: actions/upload-pages-artifact@main
       with:
-        path: ./
+        path: '.'
     - id: deployment
       uses: actions/deploy-pages@main
         
