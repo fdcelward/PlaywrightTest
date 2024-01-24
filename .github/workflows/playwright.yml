@@ -69,6 +69,6 @@ jobs:
           # slack_username: 'Slack username'
           # slack_icon_emoji: ':botbot:'
           # suite_name: 'Playwright Test'
-          rules_configuration_path: 'path/to/rules/configuration/file'
+          # rules_configuration_path: 'path/to/rules/configuration/file'
           playwright_report_path: 'test-artifacts/**/report.json'
           playwright_output_dir: 'test-artifacts/**/results'
