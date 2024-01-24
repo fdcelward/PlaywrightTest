@@ -41,7 +41,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@master
       with:
-        name: page
+        name: playwright-report
         path: .
     - uses: actions/configure-pages@v1
     - uses: actions/upload-pages-artifact@v1
