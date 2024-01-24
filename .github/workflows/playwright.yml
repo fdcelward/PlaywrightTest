@@ -37,43 +37,46 @@ jobs:
     environment:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
-      
     steps:
     - uses: actions/download-artifact@master
       with:
         name: playwright-report
         path: playwright-report/
-    # - uses: actions/configure-pages@v1
-    # - uses: actions/upload-pages-artifact@v1
     - uses: actions/configure-pages@main
     - uses: actions/upload-pages-artifact@main
       with:
         path: './playwright-report/'
     - id: deployment
       uses: actions/deploy-pages@main
-        
-  # deploy:
-  #   if: always()
-  #   environment:
-  #     name: github-pages
-  #     url: ${{steps.deployment.outputs.page_url}}
-  #   needs: test
-  #   permissions:
-  #     contents: read
-  #     pages: write
-  #     id-token: write
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
 
-  #     - name: Setup Pages
-  #       uses: actions/configure-pages@v4
-  #     - name: Upload Artifact
-  #       uses: actions/upload-pages-artifact@v3
-  #       with:
-  #         # upload entire directory
-  #         path: '.'
-  #     - name: Deploy to GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v3
+  merge-reports:
+    # Merge reports after playwright-tests, even if some shards have failed
+    if: always()
+    needs: test
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Download blob reports from GitHub Actions Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: all-blob-reports
+        path: all-blob-reports
+
+    - name: Merge into JSON Report
+      run: npx playwright merge-reports --reporter json ./all-blob-reports > merged_tests_results.json
+
+    - name: View merged results
+      run: cat ${GITHUB_WORKSPACE}/merged_tests_results.json
+
+    - name: Send report to Slack using CLI
+      env:
+        SLACK_BOT_USER_OAUTH_TOKEN: ${{ secrets.SLACK_REPORT_AUTO_TEST }}
+      run: npx playwright-slack-report --config="${GITHUB_WORKSPACE}/cli_config.json" --json-results="${GITHUB_WORKSPACE}/merged_tests_results.json"
+    
