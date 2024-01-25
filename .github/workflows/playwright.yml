@@ -49,23 +49,36 @@ jobs:
     - id: deployment
       uses: actions/deploy-pages@main
 
-    - uses: actions/checkout@v4
-    - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: results.json
-        path: ./results.json
-        retention-days: 1
+    # - uses: actions/checkout@v4
+    # - uses: actions/upload-artifact@v4
+    #   if: always()
+    #   with:
+    #     name: results.json
+    #     path: ./results.json
+    #     retention-days: 1
 
-    - name: get properties
-      id: json_properties
-      uses: ActionsTools/read-json-action@main
-      with:
-        file_path: "results.json"
+    # - name: get properties
+    #   id: json_properties
+    #   uses: ActionsTools/read-json-action@main
+    #   with:
+    #     file_path: "results.json"
     
-    - run: |
-        echo ${{steps.json_properties.outputs.name}}
-        echo ${{steps.json_properties.outputs.version}}
+    # - run: |
+    #     echo ${{steps.json_properties.outputs.name}}
+    #     echo ${{steps.json_properties.outputs.version}}
+
+
+    - name: Slack Notification
+      if: always()
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: automation_for_testing_only
+        SLACK_COLOR: ${{ job.status }} # or a specific color like 'green' or '#ff00ff'
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_MESSAGE: ':goat: Playwright for :desktop_computer:${{ github.event.inputs.environment}} :goat: https://github.com/fdcelward/PlaywrightTest/${{ github.run_number }}/'
+        SLACK_TITLE: Report [run on ${{ github.event.inputs.environment}}] using ${{ github.event.inputs.maestro_web_branch }}]
+        SLACK_USERNAME: rtCamp
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       #Test Send Slack
     # - name: Post to a Slack channel
     #   id: slack
