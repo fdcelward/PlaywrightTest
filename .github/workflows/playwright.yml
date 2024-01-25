@@ -68,39 +68,41 @@ jobs:
     #     echo ${{steps.json_properties.outputs.version}}
 
 
-    - name: Slack Notification
-      if: always()
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: automation_for_testing_only
-        SLACK_COLOR: ${{ job.status }} # or a specific color like 'green' or '#ff00ff'
-        SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_MESSAGE: ':goat: Playwright for :desktop_computer:${{ github.event.inputs.environment}} :goat: https://github.com/fdcelward/PlaywrightTest/${{ github.run_number }}/'
-        SLACK_TITLE: Report [run on ${{ github.event.inputs.environment}}] using ${{ github.event.inputs.maestro_web_branch }}]
-        SLACK_USERNAME: rtCamp
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      #Test Send Slack
-    # - name: Post to a Slack channel
-    #   id: slack
-    #   uses: slackapi/slack-github-action@v1.24.0
-    #   with:
-    #     # Slack channel id, channel name, or user id to post message.
-    #     # See also: https://api.slack.com/methods/chat.postMessage#channels
-    #     channel-id: 'C03FN0AFT8V'
-    #     # For posting a rich message using Block Kit
-    #     payload: |
-    #       {
-    #         "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
-    #         "blocks": [
-    #           {
-    #             "type": "section",
-    #             "text": {
-    #               "type": "mrkdwn",
-    #               "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-    #             }
-    #           }
-    #         ]
-    #       }
+    # - name: Slack Notification
+    #   if: always()
+    #   uses: rtCamp/action-slack-notify@v2
     #   env:
-    #     SLACK_BOT_TOKEN: ${{ secrets.SLACK_OAUTH_TOKEN }}
+    #     SLACK_CHANNEL: automation_for_testing_only
+    #     SLACK_COLOR: ${{ job.status }} # or a specific color like 'green' or '#ff00ff'
+    #     SLACK_ICON: https://github.com/rtCamp.png?size=48
+    #     SLACK_MESSAGE: ':goat: Playwright for :desktop_computer:${{ github.event.inputs.environment}} :goat: https://github.com/fdcelward/PlaywrightTest/${{ github.run_number }}/'
+    #     SLACK_TITLE: Report [run on ${{ github.event.inputs.environment}}] using ${{ github.event.inputs.maestro_web_branch }}]
+    #     SLACK_USERNAME: rtCamp
+    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+      #Test Send Slack
+    - name: Post to a Slack channel
+      id: slack
+      uses: slackapi/slack-github-action@v1.24.0
+      with:
+        # Slack channel id, channel name, or user id to post message.
+        # See also: https://api.slack.com/methods/chat.postMessage#channels
+        channel-id: 'C03FN0AFT8V'
+        # For posting a rich message using Block Kit
+        payload: |
+          {
+            "text": "*GitHub Action Build Result: ${{ job.status }}*\n>:github: Github Action: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n:bar_chart: Html Result: ${{steps.deployment.outputs.page_url}}",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*GitHub Action Build Result: ${{ job.status }}*\n>:github: Github Action: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n:bar_chart: Html Result: ${{steps.deployment.outputs.page_url}}"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_OAUTH_TOKEN }}
+
       
