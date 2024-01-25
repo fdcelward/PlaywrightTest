@@ -66,7 +66,6 @@ module.exports = defineConfig({
     //   },
 
     // ],
-    ['blob', { outputDir: 'my-report', fileName: `report-${os.platform()}.zip` }],
     ['json', { outputFile: 'results.json' }],
     ["html"], // other reporters
   ],
