@@ -18,13 +18,23 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      # run: npx playwright test
+      run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     - uses: actions/upload-artifact@v4
       if: always()
       with:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+    #
+    - name: Upload blob report to GitHub Actions Artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: blob-report-${{ matrix.shardIndex }}
+        path: blob-report
+        retention-days: 1
 
   deploy:
     if: always()
@@ -49,6 +59,7 @@ jobs:
     - id: deployment
       uses: actions/deploy-pages@main
 
+
   merge-reports:
     # Merge reports after playwright-tests, even if some shards have failed
     if: always()
@@ -64,13 +75,24 @@ jobs:
       run: npm ci
 
     - name: Download blob reports from GitHub Actions Artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
-        name: all-blob-reports
-        path: ./blob-dir/
+        path: all-blob-reports
+        pattern: blob-report-*
+        merge-multiple: true
 
-    - name: Merge into JSON Report
-      run: npx playwright merge-reports --reporter json ./all-blob-reports > merged_tests_results.json
+    - name: Merge into HTML Report
+      run: npx playwright merge-reports --reporter html ./all-blob-reports 
+
+    - name: Upload HTML report
+      uses: actions/upload-artifact@v4
+      with:
+        name: html-report--attempt-${{ github.run_attempt }}
+        path: playwright-report
+        retention-days: 14
+
+    # - name: Merge into JSON Report
+    #   run: npx playwright merge-reports --reporter json ./all-blob-reports > merged_tests_results.json
 
     - name: View merged results
       run: cat ${GITHUB_WORKSPACE}/merged_tests_results.json
