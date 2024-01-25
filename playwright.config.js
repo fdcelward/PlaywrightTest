@@ -68,6 +68,7 @@ module.exports = defineConfig({
     // ],
     ['json', { outputFile: 'results.json' }],
     ["html"], // other reporters
+    ["blob", { outputDir: "./blob-dir/"}],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
