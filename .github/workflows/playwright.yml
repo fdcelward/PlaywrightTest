@@ -94,11 +94,11 @@ jobs:
     # - name: Merge into JSON Report
     #   run: npx playwright merge-reports --reporter json ./all-blob-reports > merged_tests_results.json
 
-    - name: View merged results
-      run: cat ${GITHUB_WORKSPACE}/merged_tests_results.json
+    # - name: View merged results
+    #   run: cat ${GITHUB_WORKSPACE}/merged_tests_results.json
 
-    - name: Send report to Slack using CLI
-      env:
-        SLACK_BOT_USER_OAUTH_TOKEN: ${{ secrets.SLACK_OAUTH_TOKEN }}
-      run: npx playwright-slack-report --config="${GITHUB_WORKSPACE}/cli_config.json" --json-results="${GITHUB_WORKSPACE}/merged_tests_results.json"
+    # - name: Send report to Slack using CLI
+    #   env:
+    #     SLACK_BOT_USER_OAUTH_TOKEN: ${{ secrets.SLACK_OAUTH_TOKEN }}
+    #   run: npx playwright-slack-report --config="${GITHUB_WORKSPACE}/cli_config.json" --json-results="${GITHUB_WORKSPACE}/merged_tests_results.json"
       
