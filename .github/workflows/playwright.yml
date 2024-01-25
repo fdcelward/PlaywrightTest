@@ -67,7 +67,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: all-blob-reports
-        path: all-blob-reports
+        path: ./blob-dir/
 
     - name: Merge into JSON Report
       run: npx playwright merge-reports --reporter json ./all-blob-reports > merged_tests_results.json
