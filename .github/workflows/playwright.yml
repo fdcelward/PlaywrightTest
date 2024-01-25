@@ -49,26 +49,26 @@ jobs:
     - id: deployment
       uses: actions/deploy-pages@main
 
-  slack-notification:
-    if: always()
-    name: 'Send Slack notification'
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - name: Download test artifacts
-        uses: actions/download-artifact@v3
-        with:
-          path: test-artifacts
+  # slack-notification:
+  #   if: always()
+  #   name: 'Send Slack notification'
+  #   runs-on: ubuntu-latest
+  #   needs: deploy
+  #   steps:
+  #     - name: Download test artifacts
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         path: test-artifacts
 
-      - name: 'Send Slack notification'
-        uses: automattic/action-test-results-to-slack@v0.2.1
-        with:
-          github_token: ${{ secrets.TOKEN_GITHUB }}
-          slack_token: ${{ secrets.SLACK_TOKEN }}
-          slack_channel: "C03FN0AFT8V"
-          # slack_username: 'Slack username'
-          # slack_icon_emoji: ':botbot:'
-          # suite_name: 'Playwright Test'
-          # rules_configuration_path: 'path/to/rules/configuration/file'
-          playwright_report_path: 'test-artifacts/**/report.json'
-          playwright_output_dir: 'test-artifacts/**/results'
+  #     - name: 'Send Slack notification'
+  #       uses: automattic/action-test-results-to-slack@v0.2.1
+  #       with:
+  #         github_token: ${{ secrets.TOKEN_GITHUB }}
+  #         slack_token: ${{ secrets.SLACK_TOKEN }}
+  #         slack_channel: "C03FN0AFT8V"
+  #         # slack_username: 'Slack username'
+  #         # slack_icon_emoji: ':botbot:'
+  #         # suite_name: 'Playwright Test'
+  #         # rules_configuration_path: 'path/to/rules/configuration/file'
+  #         playwright_report_path: 'test-artifacts/**/report.json'
+  #         playwright_output_dir: 'test-artifacts/**/results'
