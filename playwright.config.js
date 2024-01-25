@@ -29,7 +29,7 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
+  reporter: //[
     // [
     //   "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
     //   {
@@ -66,10 +66,11 @@ module.exports = defineConfig({
     //   },
 
     // ],
-    ['json', { outputFile: 'results.json' }],
-    ["html"], // other reporters
-    ["blob", { outputDir: "./blob-dir/"}],
-  ],
+    // ['json', { outputFile: 'results.json' }],
+    // ["html"], // other reporters
+    // ["blob", { outputDir: "./blob-dir/"}],
+    process.env.CI ? 'blob' : 'html',
+  // ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
