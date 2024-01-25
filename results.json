@@ -22,14 +22,16 @@
         }
       ],
       [
+        "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\node_modules\\playwright-json-summary-reporter\\build\\src\\index.js",
+        null
+      ],
+      [
         "html",
         null
       ],
       [
-        "blob",
-        {
-          "outputDir": "./blob-dir/"
-        }
+        "dot",
+        null
       ]
     ],
     "reportSlowTests": {
@@ -80,16 +82,12 @@
                 {
                   "workerIndex": 0,
                   "status": "passed",
-                  "duration": 14873,
+                  "duration": 26580,
                   "errors": [],
-                  "stdout": [
-                    {
-                      "text": "../test-data/test_data_stg_nc.json\n"
-                    }
-                  ],
+                  "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2024-01-25T02:40:34.442Z",
+                  "startTime": "2024-01-25T05:51:45.425Z",
                   "attachments": []
                 }
               ],
@@ -103,7 +101,7 @@
         },
         {
           "title": "Login unsuccessful using invalid credentials",
-          "ok": true,
+          "ok": false,
           "tags": [],
           "tests": [
             {
@@ -115,26 +113,48 @@
               "results": [
                 {
                   "workerIndex": 1,
-                  "status": "passed",
-                  "duration": 10151,
-                  "errors": [],
-                  "stdout": [
+                  "status": "timedOut",
+                  "duration": 30014,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
                     {
-                      "text": "../test-data/test_data_stg_nc.json\n"
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts",
+                        "column": 60,
+                        "line": 17
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('//div[@id=\\'authMessagexx\\']')\nExpected: visible\nReceived: hidden\nCall log:\n  \u001b[2m- expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//div[@id=\\'authMessagexx\\']')\u001b[22m\n\n\n\u001b[0m \u001b[90m 15 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m\"(//input[@id='UserPassword'])[1]\"\u001b[39m)\u001b[33m.\u001b[39mfill(\u001b[32m\"admin\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 16 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'ログイン'\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 17 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\"//div[@id='authMessagexx']\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 18 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 19 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 20 |\u001b[39m test(\u001b[32m'Login test credentialsss'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\n\u001b[2m    at C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts:17:60\u001b[22m"
                     }
                   ],
+                  "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2024-01-25T02:40:34.423Z",
-                  "attachments": []
+                  "startTime": "2024-01-25T05:51:45.439Z",
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\test-results\\login_functionality-Login-unsuccessful-using-invalid-credentials-chromium-stg\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\test-results\\login_functionality-Login-unsuccessful-using-invalid-credentials-chromium-stg\\video.webm"
+                    }
+                  ]
                 }
               ],
-              "status": "expected"
+              "status": "unexpected"
             }
           ],
           "id": "1748902fd8bb6a3d236d-6819ba5d6f73653a7515",
           "file": "login_functionality.spec.ts",
-          "line": 13,
+          "line": 12,
           "column": 5
         },
         {
@@ -152,31 +172,31 @@
                 {
                   "workerIndex": 2,
                   "status": "failed",
-                  "duration": 18158,
+                  "duration": 29187,
                   "error": {
                     "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('//div[@class=\\'account_area cf\\']')\nExpected: visible\nReceived: hidden\nCall log:\n  \u001b[2m- expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//div[@class=\\'account_area cf\\']')\u001b[22m\n",
-                    "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('//div[@class=\\'account_area cf\\']')\nExpected: visible\nReceived: hidden\nCall log:\n  \u001b[2m- expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//div[@class=\\'account_area cf\\']')\u001b[22m\n\n    at C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts:24:65",
+                    "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('//div[@class=\\'account_area cf\\']')\nExpected: visible\nReceived: hidden\nCall log:\n  \u001b[2m- expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//div[@class=\\'account_area cf\\']')\u001b[22m\n\n    at C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts:22:65",
                     "location": {
                       "file": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts",
                       "column": 65,
-                      "line": 24
+                      "line": 22
                     },
-                    "snippet": "\u001b[0m \u001b[90m 22 |\u001b[39m test(\u001b[32m'Login test credentialsss'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/account'\u001b[39m)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\"//div[@class='account_area cf']\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 20 |\u001b[39m test(\u001b[32m'Login test credentialsss'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/account'\u001b[39m)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\"//div[@class='account_area cf']\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts",
                         "column": 65,
-                        "line": 24
+                        "line": 22
                       },
-                      "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('//div[@class=\\'account_area cf\\']')\nExpected: visible\nReceived: hidden\nCall log:\n  \u001b[2m- expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//div[@class=\\'account_area cf\\']')\u001b[22m\n\n\n\u001b[0m \u001b[90m 22 |\u001b[39m test(\u001b[32m'Login test credentialsss'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 23 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/account'\u001b[39m)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\"//div[@class='account_area cf']\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts:24:65\u001b[22m"
+                      "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('//div[@class=\\'account_area cf\\']')\nExpected: visible\nReceived: hidden\nCall log:\n  \u001b[2m- expect.toBeVisible with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//div[@class=\\'account_area cf\\']')\u001b[22m\n\n\n\u001b[0m \u001b[90m 20 |\u001b[39m test(\u001b[32m'Login test credentialsss'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 21 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/account'\u001b[39m)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\"//div[@class='account_area cf']\"\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts:22:65\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2024-01-25T02:40:34.433Z",
+                  "startTime": "2024-01-25T05:51:45.416Z",
                   "attachments": [
                     {
                       "name": "screenshot",
@@ -192,7 +212,7 @@
                   "errorLocation": {
                     "file": "C:\\Users\\ACER\\Documents\\GitHub\\PlaywrightTest\\tests\\login_functionality.spec.ts",
                     "column": 65,
-                    "line": 24
+                    "line": 22
                   }
                 }
               ],
@@ -201,7 +221,7 @@
           ],
           "id": "1748902fd8bb6a3d236d-925edb09e00d60ef9b80",
           "file": "login_functionality.spec.ts",
-          "line": 22,
+          "line": 20,
           "column": 5
         }
       ]
@@ -209,11 +229,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-01-25T02:40:33.625Z",
-    "duration": 20354.311,
-    "expected": 2,
+    "startTime": "2024-01-25T05:51:44.925Z",
+    "duration": 31204.255,
+    "expected": 1,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 2,
     "flaky": 0
   }
 }

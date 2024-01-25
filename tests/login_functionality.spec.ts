@@ -7,7 +7,6 @@ test('Login successful using valid credentials', async ({ page }) => {
   await page.locator("(//input[@id='UserPassword'])[1]").fill(testdata.premium_paid.password);
   await page.getByRole('button', { name: 'ログイン' }).click();
   await expect(page.url()).toContain('/mypage');
-  console.log(process.env.testDataPath);
 });
 
 test('Login unsuccessful using invalid credentials', async ({ page }) => {
@@ -15,8 +14,7 @@ test('Login unsuccessful using invalid credentials', async ({ page }) => {
   await page.getByRole('textbox', { name: 'mail@example.com' }).fill('invalidlogin_test@gmail.com');
   await page.locator("(//input[@id='UserPassword'])[1]").fill("admin");
   await page.getByRole('button', { name: 'ログイン' }).click();
-  await expect(page.locator("//div[@id='authMessage']")).toBeVisible()
-  console.log(process.env.testDataPath);
+  await expect(page.locator("//div[@id='authMessagexx']")).toBeVisible()
 });
 
 test('Login test credentialsss', async ({ page }) => {

@@ -8,10 +8,6 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    #
-    env:
-      APP_URL: https://english-staging.fdc-inc.com
-      #
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -22,83 +18,13 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      # run: npx playwright test
-      run: APP_URL=${{ env.APP_URL}} npx playwright test
+      run: npx playwright test
     - uses: actions/upload-artifact@v4
       if: always()
       with:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
-
-    #
-    - name: Read Summary Report to Get Test Results
-      if: always()
-      run: |
-        STATUS=$(cat ./summary.json | jq -r '.status')
-        echo "STATUS=$STATUS" >> $GITHUB_ENV 
-        PASSED=$(cat ./summary.json | jq -r '.passed[]' | tr '\n' ' ')
-        echo "PASSED=$PASSED" >> $GITHUB_ENV 
-        TIMEOUT=$(cat ./summary.json | jq -r '.timedOut[]' | tr '\n' ' ' | sed 's/ /--->TIMEOUT /g')
-        FAILURES=$(cat ./summary.json | jq -r '.failed[]' | tr '\n' ' ')
-        FAILURES+=$TIMEOUT
-        echo "FAILURES=$FAILURES" >> $GITHUB_ENV
-
-    - name: Send Slack Notification
-      if: always()
-      uses: 8398a7/action-slack@v3
-      with:
-        status: custom
-        fields: repo,eventName,workflow,job,took
-        custom_payload: |
-          {
-            attachments: [{
-              color: '${{ job.status }}' === 'success' ? 'good' : 'danger',
-              title: `Playwright Demo Automation Results :test_tube:`,
-              fields: [{
-                title: 'Site Under Test',
-                value: '${{ env.APP_URL }}',
-                short: true
-              },
-              {
-                title: 'Triggered By',
-                value: [{'origin': 'pull_request', 'new': 'Pull Request'}, {'origin': 'schedule', 'new': 'Schedule'}, {'origin': 'repository_dispatch', 'new': 'Deploy'}, {'origin': 'workflow_dispatch', 'new': 'GitHub Actions'}].find(item => item.origin === `${process.env.AS_EVENT_NAME}`).new || `${process.env.AS_EVENT_NAME}`,
-                short: true
-              },
-              {
-                title: 'Repo',
-                value: `${process.env.AS_REPO}`,
-                short: true
-              },
-              {
-                title: 'Execution Time',
-                value: `${process.env.AS_TOOK}`,
-                short: true
-              },
-              {
-                title: 'Workflow',
-                value: `${process.env.AS_WORKFLOW}`,
-                short: true
-              },
-              {
-                title: 'Total Tests',
-                value: (`${{ env.FAILURES }}`.match(/.spec.ts/g) || []).length + (`${{ env.PASSED }}`.match(/.spec.ts/g) || []).length,
-                short: true
-              },
-              {
-                title: 'Pull Request',
-                value: `${{ env.PULL_REQUEST_URL }}`,
-                short: false
-              },
-              {
-                title: 'Failures',
-                value: `${{ env.FAILURES }}` === '' ? 'No failures' : `${{ env.FAILURES }}`.match(/.spec.ts/g).length > 10 ? `Too many failures to print. Please go to GitHub to see full list of failures` : '```${{ env.FAILURES }}```'.replace(/ /g, '\n'),
-                short: false
-              }]
-            }]
-          }  
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }} # required
 
   deploy:
     if: always()
@@ -122,4 +48,28 @@ jobs:
         path: './playwright-report/'
     - id: deployment
       uses: actions/deploy-pages@main
+
+    - name: Post to a Slack channel
+      id: slack
+      uses: slackapi/slack-github-action@v1.24.0
+      with:
+        # Slack channel id, channel name, or user id to post message.
+        # See also: https://api.slack.com/methods/chat.postMessage#channels
+        channel-id: 'C03FN0AFT8V'
+        # For posting a rich message using Block Kit
+        payload: |
+          {
+            "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_OAUTH_TOKEN }}
       

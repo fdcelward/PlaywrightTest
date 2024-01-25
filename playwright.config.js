@@ -1,8 +1,6 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
 import dotenv from 'dotenv';
-import {generateCustomLayoutAsync} from "./my_custom_layout";
-import { LogLevel } from '@slack/web-api';
 
 dotenv.config({
   path: './env/.env.stg',
@@ -66,11 +64,12 @@ module.exports = defineConfig({
     //   },
 
     // ],
-    // ['json', { outputFile: 'results.json' }],
+    ['json', { outputFile: 'results.json' }],
     ['playwright-json-summary-reporter'],
     ["html"], // other reporters
     // ["blob", { outputDir: "./blob-dir/"}],
     // process.env.CI ? 'blob' : 'html',
+    ['dot'],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

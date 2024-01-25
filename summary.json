@@ -1,17 +1,18 @@
 {
-  "durationInMS": 18161,
+  "durationInMS": 31188,
   "passed": [
-    "login_functionality.spec.ts:4:5",
-    "login_functionality.spec.ts:13:5"
+    "login_functionality.spec.ts:4:5"
   ],
   "skipped": [],
   "failed": [
-    "login_functionality.spec.ts:22:5"
+    "login_functionality.spec.ts:20:5"
   ],
   "warned": [],
   "interrupted": [],
-  "timedOut": [],
+  "timedOut": [
+    "login_functionality.spec.ts:12:5"
+  ],
   "flakey": [],
   "status": "failed",
-  "startedAt": 1706157865970
+  "startedAt": 1706161904944
 }
