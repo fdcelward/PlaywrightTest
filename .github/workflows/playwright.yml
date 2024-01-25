@@ -49,27 +49,37 @@ jobs:
     - id: deployment
       uses: actions/deploy-pages@main
 
-    - name: Post to a Slack channel
-      id: slack
-      uses: slackapi/slack-github-action@v1.24.0
+    - name: get properties
+      id: json_properties
+      uses: ActionsTools/read-json-action@main
       with:
-        # Slack channel id, channel name, or user id to post message.
-        # See also: https://api.slack.com/methods/chat.postMessage#channels
-        channel-id: 'C03FN0AFT8V'
-        # For posting a rich message using Block Kit
-        payload: |
-          {
-            "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
-            "blocks": [
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                }
-              }
-            ]
-          }
-      env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_OAUTH_TOKEN }}
+        file_path: "./results.json"
+    
+    - run: |
+        echo ${{steps.json_properties.outputs.name}}
+        echo ${{steps.json_properties.outputs.version}}
+      #Test Send Slack
+    # - name: Post to a Slack channel
+    #   id: slack
+    #   uses: slackapi/slack-github-action@v1.24.0
+    #   with:
+    #     # Slack channel id, channel name, or user id to post message.
+    #     # See also: https://api.slack.com/methods/chat.postMessage#channels
+    #     channel-id: 'C03FN0AFT8V'
+    #     # For posting a rich message using Block Kit
+    #     payload: |
+    #       {
+    #         "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+    #         "blocks": [
+    #           {
+    #             "type": "section",
+    #             "text": {
+    #               "type": "mrkdwn",
+    #               "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+    #             }
+    #           }
+    #         ]
+    #       }
+    #   env:
+    #     SLACK_BOT_TOKEN: ${{ secrets.SLACK_OAUTH_TOKEN }}
       
