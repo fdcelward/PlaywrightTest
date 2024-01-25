@@ -38,34 +38,34 @@ module.exports = defineConfig({
     //     sendResults: "always", // "always" , "on-failure", "off"
     //   },
     // ],
-    [
-      "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
-      {
-        channels: ["automation_for_testing_only"], // provide one or more Slack channels
-        sendResults: "always", // "always" , "on-failure", "off"
-        layout: generateCustomLayoutAsync,
-        maxNumberOfFailuresToShow: 10,
-        meta: [
-            // {
-            //     key: 'BUILD_NUMBER',
-            //     value: '323332-2341',
-            // },
-            // {
-            //     key: 'WHATEVER_ENV_VARIABLE',
-            //     value: process.env.SOME_ENV_VARIABLE, // depending on your CI environment, this can be the branch name, build id, etc
-            // },
-            {
-                key: 'HTML Results',
-                value: '<https://your-build-artifacts.my.company.dev/pw/23887/playwright-report/index.html|📊>',
-            },
-        ],
-        slackOAuthToken: process.env.oathToken,
-        slackLogLevel: LogLevel.DEBUG,
-        disableUnfurl: true,
-        showInThread: true,
-      },
+    // [
+    //   "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
+    //   {
+    //     channels: ["automation_for_testing_only"], // provide one or more Slack channels
+    //     sendResults: "always", // "always" , "on-failure", "off"
+    //     layout: generateCustomLayoutAsync,
+    //     maxNumberOfFailuresToShow: 10,
+    //     meta: [
+    //         // {
+    //         //     key: 'BUILD_NUMBER',
+    //         //     value: '323332-2341',
+    //         // },
+    //         // {
+    //         //     key: 'WHATEVER_ENV_VARIABLE',
+    //         //     value: process.env.SOME_ENV_VARIABLE, // depending on your CI environment, this can be the branch name, build id, etc
+    //         // },
+    //         {
+    //             key: 'HTML Results',
+    //             value: '<https://your-build-artifacts.my.company.dev/pw/23887/playwright-report/index.html|📊>',
+    //         },
+    //     ],
+    //     slackOAuthToken: process.env.oathToken,
+    //     slackLogLevel: LogLevel.DEBUG,
+    //     disableUnfurl: true,
+    //     showInThread: true,
+    //   },
 
-    ],
+    // ],
     ['json', { outputFile: 'results.json' }],
     ["html"], // other reporters
   ],
